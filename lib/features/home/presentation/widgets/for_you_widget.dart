@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:haoyako/features/home/presentation/pages/details_screen.dart';
 
 class ForYouWidget extends StatefulWidget {
   const ForYouWidget({super.key});
@@ -61,7 +62,8 @@ class ListItemWidget extends StatelessWidget {
   final String imageUrl;
   final int index;
 
-  const ListItemWidget({super.key,
+  const ListItemWidget({
+    super.key,
     required this.imageUrl,
     required this.index,
   });
@@ -70,49 +72,69 @@ class ListItemWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.fromLTRB(15, 8, 5, 0),
-      child: Row(
-        children: [
-          ClipRRect(
-            borderRadius: BorderRadius.circular(15),
-            child: Image.network(
-              imageUrl,
-              width: 100,
-              height: 100,
-              fit: BoxFit.cover,
-            ),
-          ),
-          SizedBox(width: 10),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text('Data $index', style: TextStyle(fontSize: 14)),
-              SizedBox(height: 4),
-              Text('Rent Ksh: $index/year',
-                  style: TextStyle(fontSize: 12, color: Colors.blue)),
-              Row(
-                children: [
-                  Row(
-                    children: [
-                      Icon(Icons.bed, color: Colors.grey),
-                      SizedBox(width: 5),
-                      Text('Bedrooms  $index',
-                        style: TextStyle(color: Colors.grey),
-                      )
-                    ],
-                  ),
-                  SizedBox(width: 30),
-                  Row(
-                    children: [
-                      Icon(Icons.bathtub, color: Colors.grey),
-                      SizedBox(width: 5),
-                      Text('Bathrooms $index',style: TextStyle(color: Colors.grey),)
-                    ],
-                  ),
-                ],
+      child: GestureDetector(
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => DetailsScreen(
+                imageUrl: imageUrl,
+                index: index,
               ),
-            ],
-          ),
-        ],
+            ),
+          );
+        },
+        child: Row(
+          children: [
+            Hero(
+              tag: 'propertyImage$index',
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(15),
+                child: Image.network(
+                  imageUrl,
+                  width: 100,
+                  height: 100,
+                  fit: BoxFit.cover,
+                ),
+              ),
+            ),
+            SizedBox(width: 10),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text('Data $index', style: TextStyle(fontSize: 14)),
+                SizedBox(height: 4),
+                Text('Rent Ksh: $index/year',
+                    style: TextStyle(fontSize: 12, color: Colors.blue)),
+                Row(
+                  children: [
+                    Row(
+                      children: [
+                        Icon(Icons.bed, color: Colors.grey),
+                        SizedBox(width: 5),
+                        Text(
+                          'Bedrooms  $index',
+                          style: TextStyle(color: Colors.grey),
+                        )
+                      ],
+                    ),
+                    SizedBox(width: 30),
+                    Row(
+                      children: [
+                        Icon(Icons.bathtub, color: Colors.grey),
+                        SizedBox(width: 5),
+                        Text(
+                          'Bathrooms $index',
+                          style: TextStyle(color: Colors.grey),
+                        )
+                      ],
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }

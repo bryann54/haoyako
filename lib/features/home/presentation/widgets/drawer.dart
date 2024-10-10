@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:haoyako/features/profile/presentation/pages/profile_screen.dart';
 
 class CustomDrawer extends StatefulWidget {
   final Widget child;
@@ -38,11 +39,11 @@ class CustomDrawerState extends State<CustomDrawer>
           _controller.reverse();
         }
       },
-       child: AnimatedBuilder(
+      child: AnimatedBuilder(
         animation: _controller,
         builder: (context, _) {
           double slide = maxSlide * _controller.value;
-          double scale = 1 - (_controller.value * 0.2); 
+          double scale = 1 - (_controller.value * 0.2);
           return Stack(
             children: [
               _buildDrawer(context),
@@ -79,7 +80,6 @@ class CustomDrawerState extends State<CustomDrawer>
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-         
             _buildDrawerItem(
               icon: Icons.home_outlined,
               label: 'Home',
@@ -93,7 +93,11 @@ class CustomDrawerState extends State<CustomDrawer>
               icon: Icons.person_outline,
               label: 'Profile',
               onTap: () {
-                // Navigate to profile page
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => ProfileScreen()),
+                );
+
                 toggle();
               },
             ),
@@ -186,8 +190,7 @@ class CustomDrawerState extends State<CustomDrawer>
           ),
         ),
         selected: isSelected,
-        selectedTileColor:
-            Colors.white,
+        selectedTileColor: Colors.white,
         onTap: onTap,
       ),
     );
