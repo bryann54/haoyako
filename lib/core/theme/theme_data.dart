@@ -10,7 +10,7 @@ class AppTheme {
       foregroundColor: Colors.white,
     ),
     textTheme: TextTheme(
-      bodyLarge: TextStyle(color: Colors.black), 
+      bodyLarge: TextStyle(color: Colors.black),
     ),
   );
 
@@ -23,7 +23,7 @@ class AppTheme {
       foregroundColor: Colors.white,
     ),
     textTheme: TextTheme(
-      bodyLarge: TextStyle(color: Colors.white), 
+      bodyLarge: TextStyle(color: Colors.white),
     ),
   );
 }

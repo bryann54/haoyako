@@ -47,8 +47,10 @@ class _CategoriesWidgetState extends State<CategoriesWidget> {
                 ),
                 child: Center(
                   child: Text(
-                    categories[index], 
-                    style: TextStyle(fontSize: 14,  color: selectedIndex == index
+                    categories[index],
+                    style: TextStyle(
+                      fontSize: 14,
+                      color: selectedIndex == index
                           ? Colors.white
                           : Colors.black26,
                     ),

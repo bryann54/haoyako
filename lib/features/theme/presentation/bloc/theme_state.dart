@@ -12,4 +12,3 @@ class LightThemeState extends ThemeState {
 class DarkThemeState extends ThemeState {
   DarkThemeState() : super(AppTheme.darkTheme);
 }
-
