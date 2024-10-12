@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:haoyako/features/authentication/presentation/pages/auth_screen.dart';
 import 'package:haoyako/features/home/presentation/pages/home_screen.dart';
 import 'package:haoyako/features/theme/presentation/bloc/theme_bloc.dart';
 import 'package:haoyako/features/authentication/presentation/bloc/authentication_bloc.dart'; // Make sure this path is correct
@@ -19,7 +18,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => ThemeBloc()),
         BlocProvider(
             create: (context) =>
-                AuthenticationBloc()), // Add the AuthenticationBloc here
+                AuthenticationBloc()),
       ],
       child: BlocBuilder<ThemeBloc, ThemeState>(
         builder: (context, themeState) {

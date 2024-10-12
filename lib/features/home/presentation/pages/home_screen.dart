@@ -14,30 +14,50 @@ class HomeScreen extends StatelessWidget {
     return CustomDrawer(
       drawerKey: _drawerKey,
       child: Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.white,
-          title: Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              Icon(Icons.notifications_outlined, color: Colors.black, size: 30),
-            ],
-          ),
-          leading: IconButton(
-            icon: Icon(Icons.menu, color: Colors.black, size: 30),
-            onPressed: () {
-              _drawerKey.currentState?.toggle();
-            },
-          ),
-        ),
-        body: SingleChildScrollView(
-          child: Column(
-            children: [
-              CustomSearchBar(),
-              CategoriesWidget(),
-              SuggestedWidget(),
-              ForYouWidget(),
-            ],
-          ),
+        body: CustomScrollView(
+          slivers: [
+            SliverAppBar(
+              backgroundColor: Colors.white,
+              floating: true,
+              pinned: true,
+              snap: false,
+              centerTitle: true,
+              title: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Icon(Icons.notifications_outlined,
+                      color: Colors.black, size: 30),
+                ],
+              ),
+              leading: IconButton(
+                icon: Icon(Icons.menu, color: Colors.black, size: 30),
+                onPressed: () {
+                  _drawerKey.currentState?.toggle();
+                },
+              ),
+              bottom: PreferredSize(
+                preferredSize: Size.fromHeight(60.0),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                  child: SafeArea(
+                    child: SizedBox(
+                      height: 60,
+                      child: CustomSearchBar(),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            SliverList(
+              delegate: SliverChildListDelegate(
+                [
+                  CategoriesWidget(),
+                  SuggestedWidget(),
+                  ForYouWidget(),
+                ],
+              ),
+            ),
+          ],
         ),
       ),
     );
